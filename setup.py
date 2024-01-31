@@ -7,10 +7,10 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 __version__ = "0.0.0"
 
-REPO_NAME = "End-To-End-Waste-Detection-Project-using-Yolo-v5"
+REPO_NAME = "End-To-End-Waste-Detection-Project-using-Yolo-v5" 
 AUTHOR_USER_NAME = "MaazSayyed05"
 SRC_REPO = "waste_detection"
-AUTHOR_EMAIL = "maazsayyed05@gmail.com"
+AUTHOR_EMAIL = "maazsayyed05@gmail.com" 
 
 
 setuptools.setup(
