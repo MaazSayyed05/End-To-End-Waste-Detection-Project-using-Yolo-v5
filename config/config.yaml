@@ -8,7 +8,12 @@ data_ingestion:
   data_path: artifacts/data_ingestion/data.zip
 
 
-
+data_validation:
+  # root_dir: artifacts/data_validation
+  # status: artifacts/data_validation/status.txt
+  data_yaml: artifacts/data_ingestion/features/data.yaml
+  train_path: artifacts/data_ingestion/features/train/images
+  valid_path: artifacts/data_ingestion/features/valid/images
   
 
 

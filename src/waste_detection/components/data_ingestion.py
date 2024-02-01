@@ -32,22 +32,26 @@ class DataIngestion:
         """
 
         try:
-            dataset_url = self.config.data_URL
-            zip_download_dir = self.config.root_dir
-            os.makedirs(zip_download_dir, exist_ok=True)
-            data_file_name = "data.zip"
-            zip_file_path = os.path.join(zip_download_dir, data_file_name)
-            logging.info(
-                f"Downloading data from {dataset_url} into file {zip_file_path}"
-            )
+            if not os.path.exists(self.config.data_path):
+                dataset_url = self.config.data_URL
+                zip_download_dir = self.config.root_dir
+                os.makedirs(zip_download_dir, exist_ok=True)
+                data_file_name = "data.zip"
+                zip_file_path = os.path.join(zip_download_dir, data_file_name)
+                logging.info(
+                    f"Downloading data from {dataset_url} into file {zip_file_path}"
+                )
 
-            file_id = dataset_url.split("/")[-2]
-            prefix = "https://drive.google.com/uc?/export=download&id="
-            gdown.download(prefix + file_id, zip_file_path)
+                file_id = dataset_url.split("/")[-2]
+                prefix = "https://drive.google.com/uc?/export=download&id="
+                gdown.download(prefix + file_id, zip_file_path)
 
-            logging.info(
-                f"Downloaded data from {dataset_url} into file {zip_file_path}"
-            )
+                logging.info(
+                    f"Downloaded data from {dataset_url} into file {zip_file_path}"
+                )
+            
+            else:
+                logging.info(f"File already exists.")
 
         except Exception as e:
             raise CustomException(e, sys)

@@ -10,5 +10,15 @@ class DataIngestionConfig:
     data_path: Path
 
 
+@dataclass(frozen=True)
+class DataValidationConfig:
+    # root_dir: Path
+    # status: Path
+    data_yaml: Path
+    train_path: Path
+    valid_path: Path
+
+
+
 
 

@@ -5,6 +5,7 @@ from ensure import ensure_annotations
 
 import yaml
 import json
+
 # import joblib
 # import pickle
 
@@ -39,6 +40,32 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
 
     except Exception as e:
         logging.error(f"Error occured while reading yaml file: {path_to_yaml}")
+        raise CustomException(e, sys)
+
+
+def write_yaml_file(file_path: str, content: object, replace: bool = False) -> None:
+    """
+    Write a yaml file
+
+    Arguments:
+    file_path : str
+    content : object
+    replace : bool
+
+    """
+    try:
+        if replace:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+        with open(file_path, "w") as file:
+            yaml.dump(content, file)
+            logging.info("Successfully write_yaml_file")
+
+    except Exception as e:
+        logging.error(f"Error occured while writing yaml file: {file_path}")
         raise CustomException(e, sys)
 
 
@@ -106,7 +133,6 @@ def load_json(path: Path) -> ConfigBox:
     return ConfigBox(content)
 
 
-
 def decodeImage(imgstring, fileName):
     imgdata = base64.b64decode(imgstring)
     with open("./data/" + fileName, "wb") as f:
@@ -119,4 +145,34 @@ def encodeImageIntoBase64(croppedImagePath):
         return base64.b64encode(f.read())
 
 
+# import yaml
 
+
+def update_yaml_file(file_path, key_path, new_value):
+    try:
+        # Load YAML file
+        with open(file_path, "r") as file:
+            data = yaml.safe_load(file)
+
+        # Update the value using the key path
+        nested_dict = data
+        keys = key_path.split(".")
+        for key in keys[:-1]:
+            nested_dict = nested_dict[key]
+        nested_dict[keys[-1]] = new_value
+
+        # Save the updated YAML back to the file
+        with open(file_path, "w") as file:
+            yaml.dump(data, file, default_flow_style=False)
+
+        logging.info(f"Updated '{key_path}' to '{new_value}' in '{file_path}'.")
+    except Exception as e:
+        logging.info(f"Error updating YAML file: {e}")
+        raise CustomException(e,sys)
+
+# # Example usage
+# yaml_file_path = "example.yaml"
+# key_to_update = "some.nested.key"
+# new_value_to_set = "new_value"
+
+# update_yaml_file(yaml_file_path, key_to_update, new_value_to_set)

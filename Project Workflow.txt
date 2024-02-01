@@ -19,9 +19,10 @@ nc: 13
 6. All Components NoteBooks
     {
 		01_data_ingestion.ipynb
+		02_data_validation.ipynb  		### ( We will change train, valid and test path in data.yaml)
         
 	}
 7. All Components Modular Code Implementation.
-8. Training Pipeline( data_ingestion ).
+8. Training Pipeline( data_ingestion, data_validation ).
 9. Prediction Pipeline and User App Creation using Flask.
 10.Database Connectivity.
