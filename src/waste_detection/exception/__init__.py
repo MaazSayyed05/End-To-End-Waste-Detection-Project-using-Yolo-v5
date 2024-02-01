@@ -1,6 +1,6 @@
 
 import sys #System
-from heart_disease_pred.logger import logging
+from waste_detection.logger import logging
 
 def error_message_detail(error,error_detail:sys):
     _,_,exc_tb = error_detail.exc_info()

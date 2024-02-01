@@ -4,7 +4,8 @@ notebook==7.0.0a7
 gdown
 flask-cors
 flask
-
+ensure
+python-box
 
 
 # YOLOv5 requirements

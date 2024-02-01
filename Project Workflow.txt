@@ -1,5 +1,5 @@
-End-To-End Heart Disease Prediction Project
-
+End-To-End Waste Detection Project using Yolo v5
+nc: 13
 
 1. GitHub Repository Setup.
 2. Project Template Creation (template.py) [Creating Folders in Pythonic Way].
@@ -18,9 +18,10 @@ End-To-End Heart Disease Prediction Project
     }
 6. All Components NoteBooks
     {
+		01_data_ingestion.ipynb
         
 	}
 7. All Components Modular Code Implementation.
-8. Training Pipeline( ).
+8. Training Pipeline( data_ingestion ).
 9. Prediction Pipeline and User App Creation using Flask.
 10.Database Connectivity.
