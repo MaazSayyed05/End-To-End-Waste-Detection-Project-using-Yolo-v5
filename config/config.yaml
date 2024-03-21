@@ -16,5 +16,14 @@ data_validation:
   valid_path: artifacts/data_ingestion/features/valid/images
   
 
-
+model_training:
+  root_dir: artifacts/model_training
+  yolov5_root: yolov5
+  yolov5_models: yolov5/models
+  custom_yolov5: yolov5/models/custom_yolov5s.yaml
+  train_path: yolov5/train.py
+  yolov5_runs: artifacts/model_training/yolov5/runs
+  history: artifacts/model_training/history
+  git_URL: 'https://github.com/ultralytics/yolov5.git'
+  
 

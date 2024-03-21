@@ -43,30 +43,24 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
         raise CustomException(e, sys)
 
 
-def write_yaml_file(file_path: str, content: object, replace: bool = False) -> None:
-    """
-    Write a yaml file
 
-    Arguments:
-    file_path : str
-    content : object
-    replace : bool
-
-    """
+def read_modify_write_yaml(input_file_path, output_file_path, changes):
     try:
-        if replace:
-            if os.path.exists(file_path):
-                os.remove(file_path)
+        # Read YAML file
+        with open(input_file_path, 'r') as file:
+            yaml_content = yaml.safe_load(file)
 
-        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        # Modify key-value pairs
+        for key, value in changes.items():
+            yaml_content[key] = value
 
-        with open(file_path, "w") as file:
-            yaml.dump(content, file)
-            logging.info("Successfully write_yaml_file")
+        # Write modified content to a new file
+        with open(output_file_path, 'w') as file:
+            yaml.dump(yaml_content, file)
 
     except Exception as e:
-        logging.error(f"Error occured while writing yaml file: {file_path}")
-        raise CustomException(e, sys)
+        print(f"Error occurred: {e}")
+
 
 
 @ensure_annotations

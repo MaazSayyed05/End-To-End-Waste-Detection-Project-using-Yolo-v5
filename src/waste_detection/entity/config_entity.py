@@ -20,5 +20,22 @@ class DataValidationConfig:
 
 
 
+@dataclass(frozen=True)
+class ModelTrainingConfig:
+    root_dir: Path
+    yolov5_root: Path
+    yolov5_models: Path
+    custom_yolov5: Path
+    train_path: Path
+    yolov5_runs: Path
+    history: Path
+    git_URL: str
+    IMAGE_SIZE: int
+    BATCH_SIZE: int
+    EPOCHS: int
+    DATA: Path
+    WEIGHTS: str
+    NAME: str
+
 
 

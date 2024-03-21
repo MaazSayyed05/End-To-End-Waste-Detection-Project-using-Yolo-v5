@@ -9,6 +9,7 @@ from waste_detection.constants import *
 
 from waste_detection.entity.config_entity import DataIngestionConfig
 from waste_detection.entity.config_entity import DataValidationConfig
+from waste_detection.entity.config_entity import ModelTrainingConfig
 
 
 class ConfigManager:
@@ -33,7 +34,6 @@ class ConfigManager:
 
         return data_ingestion_config
 
-
     def get_data_validation_config(self) -> DataValidationConfig:
         config = self.config.data_validation
 
@@ -48,3 +48,29 @@ class ConfigManager:
         )
 
         return data_validation_config
+
+    def get_model_training_config(self) -> ModelTrainingConfig:
+        config = self.config.model_training
+        params = self.params.train
+
+        create_directories([config.root_dir])
+        create_directories([config.history])
+
+        model_training_config = ModelTrainingConfig(
+            root_dir=Path(config.root_dir),
+            yolov5_root=Path(config.yolov5_root),
+            yolov5_models=Path(config.yolov5_models),
+            custom_yolov5=Path(config.custom_yolov5),
+            train_path=Path(config.train_path),
+            yolov5_runs=Path(config.yolov5_runs),
+            history=Path(config.history),
+            git_URL=config.git_URL,
+            IMAGE_SIZE=params.IMAGE_SIZE,
+            BATCH_SIZE=params.BATCH_SIZE,
+            EPOCHS=params.EPOCHS,
+            DATA=Path(params.DATA),
+            WEIGHTS=params.WEIGHTS,
+            NAME=params.NAME,
+        )
+
+        return model_training_config

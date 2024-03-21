@@ -1,2 +1,18 @@
 
 key: value
+
+# train yolov5s on custom data for 100 epochs
+# # time its performance
+# %%time
+# %cd /content/yolov5/
+# !python train.py --img 640 --batch 5 --epochs 2 --data '/content/first-project-1/data.yaml' --cfg /content/yolov5/models/custom_yolov5s.yaml  --weights 'yolov5s.pt' --name yolov5s_results  --cache
+
+
+train:
+  IMAGE_SIZE: 640
+  BATCH_SIZE: 5
+  EPOCHS: 2
+  DATA: artifacts\data_ingestion\features\data.yaml
+  WEIGHTS: 'yolov5s.pt'
+  NAME: yolov5s_results
+
